@@ -2,15 +2,15 @@ package com.example.tictactoe_game.data;
 
 import com.example.tictactoe_game.presentation.Communication;
 
-import java.util.InputMismatchException;
-import java.util.Random;
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.*;
 
 public class Game extends Communication{
 
     private Player player1;
     private Player player2;
     private Scanner scanner = new Scanner(System.in);
+    private static List emptyBoardChar;
     private int round = 0;
     private int chosenRow;
     private int chosenCol;
@@ -78,24 +78,51 @@ public class Game extends Communication{
         }
         return chosenCol;
     }
-
-    public void computerMove(char[][] board){
+    public void computerMove ( char[][] board) {
         int dim = board.length;
-        for (int col = 0; col < dim; col++) {
+        boolean goodMove = false;
 
-            for (int row = 0; row < dim; row++) {
-                if (board[row][col] == 0) {
-                    chosenRow = row;
-                    chosenCol = col;
-                    break;
-                }
+        Random random = new Random();
+        int row = random.nextInt(board.length);
+        int col = random.nextInt(board.length);
+
+        while (!goodMove) {
+            if (row+1 < board.length && board[row+1][col] == 0) {
+                chosenRow = row;
+                chosenCol = col;
+                goodMove = true;
+            } else if (row-1 >=0 && board[row-1][col] == 0) {
+                chosenRow = row;
+                chosenCol = col;
+                goodMove = true;
+            } else if (col+1 < board.length && board[row][col+1] == 0) {
+                chosenRow = row;
+                chosenCol = col;
+                goodMove = true;
+            } else if (col-1 >=0 && board[row][col-1] == 0) {
+                chosenRow = row;
+                chosenCol = col;
+                goodMove = true;
+            } else if (row+1 < board.length && col+1 < board.length && board[row+1][col+1] == 0) {
+                chosenRow = row;
+                chosenCol = col;
+                goodMove = true;
+            } else if (row-1 >=0 && col-1 >=0 && board[row-1][col-1] == 0) {
+                chosenRow = row;
+                chosenCol = col;
+                goodMove = true;
+            }else {
+                row = random.nextInt(board.length);
+                col = random.nextInt(board.length);
             }
         }
     }
 
-    public boolean isPossibleToPutSymbol(char[][] board){
+    public boolean isPossibleToPutSymbol(char[][] board, Player player){
         if (board[chosenRow][chosenCol] == 0) {
             return true;
+        } else if (player.getPlayerNumber() == 3) {
+            return false;
         }
         System.out.println("This field is taken. Please select again");
         return false;

@@ -31,16 +31,16 @@ public class GameRunner {
         String chosenPlayer = view.chooseSecondPlayer();
         if (chosenPlayer.equals("c")) {
             player2 = new Player("computer", 'O', 3);
-        }else if(chosenPlayer.equals("p")){
+        } else if (chosenPlayer.equals("p")) {
             System.out.println("Second player - give your name...");
             secondPlayerName = view.readName();
             player2 = new Player(secondPlayerName, 'O', 2);
         }
         String chosenVersion = view.chooseGameVersion();
-        if(chosenVersion.equals("t")){
+        if (chosenVersion.equals("t")) {
             board = new char[3][3];
             gameVersion = 3;
-        }else if(chosenVersion.equals("e")){
+        } else if (chosenVersion.equals("e")) {
             board = new char[10][10];
             gameVersion = 10;
         }
@@ -56,23 +56,22 @@ public class GameRunner {
 
             activePlayer = game.checkRound();
 
-            System.out.println(activePlayer.getPlayerName());
-
-            if(activePlayer.getPlayerNumber() == 3){
-                game.computerMove(board);
-            }else {
+            if (activePlayer.getPlayerNumber() != 3) {
+                System.out.println(activePlayer.getPlayerName());
                 game.readRow(board);
                 game.readCol(board);
+            } else {
+                game.computerMove(board);
             }
 
-            if (game.isPossibleToPutSymbol(board)) {
+            if (game.isPossibleToPutSymbol(board, activePlayer)) {
                 board[game.getChosenRow()][game.getChosenCol()] = activePlayer.getPlayerSymbol();
                 view.printField(board);
                 game.nextRound();
                 if (test.gameWinResult(board, activePlayer)) {
-                    if(activePlayer.getPlayerNumber()==1 || activePlayer.getPlayerNumber()==2){
+                    if (activePlayer.getPlayerNumber() == 1 || activePlayer.getPlayerNumber() == 2) {
                         System.out.println("Congratulations " + activePlayer.getPlayerName() + " you WON");
-                    }else{
+                    } else {
                         System.out.println(player1 + "You lose");
                     }
                     isWon = true;
