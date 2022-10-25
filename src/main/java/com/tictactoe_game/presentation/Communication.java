@@ -1,17 +1,15 @@
-package com.example.tictactoe_game.presentation;
+package com.tictactoe_game.presentation;
 
-import com.example.tictactoe_game.data.Board;
-import com.example.tictactoe_game.data.Player;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Communication extends Board {
+public class Communication {
+    private char board[][];
     private Scanner scanner = new Scanner(System.in);
 
     public Communication(char[][] board) {
-
-        super(board);
+        this.board = board;
     }
 
     public String readName() throws IOException {
@@ -35,7 +33,11 @@ public class Communication extends Board {
             System.out.print(row + " ");
             System.out.print("|");
             for (int col = 0; col < dim; col++) {
+                if(board[row][col] == 0){
+                    board[row][col] = ' ';
+                }
                 System.out.print(board[row][col] + "|");
+
             }
             System.out.println();
         }

@@ -1,7 +1,7 @@
-package com.example.tictactoe_game;
+package com.tictactoe_game;
 
-import com.example.tictactoe_game.data.Player;
-import com.example.tictactoe_game.data.WinResult;
+import com.tictactoe_game.data.Player;
+import com.tictactoe_game.data.WinResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

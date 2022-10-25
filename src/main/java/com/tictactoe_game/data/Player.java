@@ -1,4 +1,4 @@
-package com.example.tictactoe_game.data;
+package com.tictactoe_game.data;
 
 public class Player {
 

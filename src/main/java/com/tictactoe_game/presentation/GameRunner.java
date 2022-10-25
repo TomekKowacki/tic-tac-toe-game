@@ -1,9 +1,7 @@
-package com.example.tictactoe_game.presentation;
-
-import com.example.tictactoe_game.data.BoardMismatchException;
-import com.example.tictactoe_game.data.Game;
-import com.example.tictactoe_game.data.Player;
-import com.example.tictactoe_game.data.WinResult;
+package com.tictactoe_game.presentation;
+import com.tictactoe_game.data.Game;
+import com.tictactoe_game.data.Player;
+import com.tictactoe_game.data.WinResult;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.example.tictactoe_game.data;
+package com.tictactoe_game.data;
 
 public class WinResult{
 
@@ -28,19 +28,19 @@ public class WinResult{
         }else if(gameVersion == 10){
             for (int row = 0; row < dim; row++) {
                 for (int col = 0; col < dim; col++) {
-                    int symbolInRow = 1;
+                    int symbolsInRow = 1;
                     if (board[row][col] == player.getPlayerSymbol()) {
                         for (int i = 1; i < 5; i++) {
                             if ((col + i) < dim && board[row][col + i] == player.getPlayerSymbol()) {
-                                symbolInRow ++;
-                                if (symbolInRow == 5) {
+                                symbolsInRow ++;
+                                if (symbolsInRow == 5) {
                                     win = true;
                                     break;
                                 }
                             }
                         }
                     }else {
-                        symbolInRow = 1;
+                        symbolsInRow = 1;
                     }
                 }
                 if (win) {
@@ -71,19 +71,19 @@ public class WinResult{
         }else if(gameVersion == 10){
             for (int col = 0; col < dim; col++) {
                 for (int row = 0; row < dim; row++) {
-                    int symbolInCol = 1;
+                    int symbolsInCol = 1;
                     if (board[row][col] == player.getPlayerSymbol()) {
                         for (int i = 1; i < 5; i++) {
                             if ((row + i) < dim && board[row + i][col] == player.getPlayerSymbol()) {
-                                symbolInCol ++;
-                                if (symbolInCol == 5) {
+                                symbolsInCol ++;
+                                if (symbolsInCol == 5) {
                                     win = true;
                                     break;
                                 }
                             }
                         }
                     }else {
-                        symbolInCol = 1;
+                        symbolsInCol = 1;
                     }
                 }
                 if (win) {
@@ -103,6 +103,8 @@ public class WinResult{
                 if (board[i][i] != player.getPlayerSymbol()) {
                     win = false;
                     break;
+                }else {
+                    win = true;
                 }
             }
             if (win) {
@@ -110,13 +112,13 @@ public class WinResult{
             }
         }else if(gameVersion == 10) {
             for (int i = 0; i < dim; i++) {
-                int symbolInDimension1 = 1;
+                int symbolsInDimension1 = 1;
                 for (int p = 0; p < dim-i; p++) {
                     if (board[i][p] == player.getPlayerSymbol()) {
                         for (int j = 1; j < 5; j++) {
                             if ((i+j) < dim && (p+j) < dim && board[i+j][p+j] == player.getPlayerSymbol()) {
-                                symbolInDimension1++;
-                                if (symbolInDimension1 == 5) {
+                                symbolsInDimension1++;
+                                if (symbolsInDimension1 == 5) {
                                     win = true;
                                     break;
                                 }
@@ -141,6 +143,8 @@ public class WinResult{
                 if (board[i][dim-i-1] != player.getPlayerSymbol()) {
                     win = false;
                     break;
+                }else {
+                    win = true;
                 }
             }
             if (win) {
@@ -149,13 +153,13 @@ public class WinResult{
         }else if(gameVersion == 10) {
 
             for(int i=0; i<dim; i++){
-                int symbolInDimension =1;
+                int symbolsInDimension =1;
                 for(int p=0; p<dim; p++){
                     if(board[i][p] == player.getPlayerSymbol()) {
                         for (int j = 1; j < 5; j++) {
                             if ((p+j) < dim && (i-j) >= 0 && board[i-j][p+j] == player.getPlayerSymbol()) {
-                                symbolInDimension++;
-                                if (symbolInDimension == 5) {
+                                symbolsInDimension++;
+                                if (symbolsInDimension == 5) {
                                     win = true;
                                     break;
                                 }

@@ -1,11 +1,10 @@
-package com.example.tictactoe_game.data;
+package com.tictactoe_game.data;
 
-import com.example.tictactoe_game.presentation.Communication;
+import com.tictactoe_game.presentation.Communication;
 
-import java.io.IOException;
 import java.util.*;
 
-public class Game extends Communication{
+public class Game extends Communication {
 
     private Player player1;
     private Player player2;
@@ -45,11 +44,22 @@ public class Game extends Communication{
         System.out.println("Enter the row number");
         boolean isNoException = false;
         while (!isNoException) {
-            try {
-                chosenRow = scanner.nextInt();
-            } catch (InputMismatchException o) {
-                System.out.println("wrong data");
+            boolean isInteger = false;
+            while(!isInteger) {
+                boolean wrongData = true;
+                try {
+                    chosenRow = scanner.nextInt();
+                } catch (InputMismatchException o) {
+                    wrongData = false;
+                    System.out.println("Wrong data. Put integer");
+                }
+                if(wrongData){
+                    isInteger = true;
+                }else {
+                    scanner.nextLine();
+                }
             }
+
             if (chosenRow < 0 || chosenRow >= board.length) {
                 System.out.println("Wrong value. Please enter your choose again");
             }
@@ -64,10 +74,20 @@ public class Game extends Communication{
         System.out.println("Enter the column number");
         boolean isNoException = false;
         while (!isNoException) {
-            try {
-                chosenCol = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("wrong data");
+            boolean isInteger = false;
+            while(!isInteger) {
+                boolean wrongData = true;
+                try {
+                    chosenCol = scanner.nextInt();
+                } catch (InputMismatchException o) {
+                    wrongData = false;
+                    System.out.println("Wrong data. Put integer");
+                }
+                if(wrongData){
+                    isInteger = true;
+                }else {
+                    scanner.nextLine();
+                }
             }
             if (chosenCol < 0 || chosenCol >= board.length) {
                 System.out.println("Wrong value. Please enter your choose again");
@@ -87,27 +107,27 @@ public class Game extends Communication{
         int col = random.nextInt(board.length);
 
         while (!goodMove) {
-            if (row+1 < board.length && board[row+1][col] == 0) {
+            if (row+1 < board.length && board[row+1][col] == ' ') {
                 chosenRow = row;
                 chosenCol = col;
                 goodMove = true;
-            } else if (row-1 >=0 && board[row-1][col] == 0) {
+            } else if (row-1 >=0 && board[row-1][col] == ' ') {
                 chosenRow = row;
                 chosenCol = col;
                 goodMove = true;
-            } else if (col+1 < board.length && board[row][col+1] == 0) {
+            } else if (col+1 < board.length && board[row][col+1] == ' ') {
                 chosenRow = row;
                 chosenCol = col;
                 goodMove = true;
-            } else if (col-1 >=0 && board[row][col-1] == 0) {
+            } else if (col-1 >=0 && board[row][col-1] == ' ') {
                 chosenRow = row;
                 chosenCol = col;
                 goodMove = true;
-            } else if (row+1 < board.length && col+1 < board.length && board[row+1][col+1] == 0) {
+            } else if (row+1 < board.length && col+1 < board.length && board[row+1][col+1] == ' ') {
                 chosenRow = row;
                 chosenCol = col;
                 goodMove = true;
-            } else if (row-1 >=0 && col-1 >=0 && board[row-1][col-1] == 0) {
+            } else if (row-1 >=0 && col-1 >=0 && board[row-1][col-1] == ' ') {
                 chosenRow = row;
                 chosenCol = col;
                 goodMove = true;
@@ -119,7 +139,7 @@ public class Game extends Communication{
     }
 
     public boolean isPossibleToPutSymbol(char[][] board, Player player){
-        if (board[chosenRow][chosenCol] == 0) {
+        if (board[chosenRow][chosenCol] == ' ') {
             return true;
         } else if (player.getPlayerNumber() == 3) {
             return false;
